@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA a l'Ensenyament | TDR & GPT Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2563EB; /* Azul académico */
+            --secondary: #1E293B; /* Gris oscuro */
+            --accent: #10B981; /* Verde éxito/tecnología */
+            --bg-light: #F8FAFC;
+            --text-main: #334155;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        /* Header & Nav */
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--secondary);
+        }
+
+        /* Sections General */
+        section {
+            padding: 4rem 5%;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        /* Prompt Section */
+        .prompt-container {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 2rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            nav ul { display: none; } /* Simple hide for mobile in this demo */
+            .btn-outline { margin-left: 0; margin-top: 1rem; display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">TDR IA Educació</div>
+        <nav>
+            <ul>
+                <li><a href="#context">El Context</a></li>
+                <li><a href="#recerca">La Recerca</a></li>
+                <li><a href="#gpt">El GPT Docent</a></li>
+                <li><a href="#prompt">Codi Font</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <span class="tag">Treball de Recerca de Batxillerat</span>
+        <h1>Intel·ligència Artificial a l'Ensenyament</h1>
+        <p>De la teoria a la pràctica: com passar de veure la IA com una drecera a veure-la com una aliada pedagògica.</p>
+        <div>
+            <a href="#gpt" class="btn">Descobrir el GPT</a>
+            <a href="https://github.com/" class="btn btn btn-outline"><i class="fab fa-github"></i> Veure a GitHub</a>
+        </div>
+    </section>
+
+    <section id="context" class="container">
+        <div class="grid-2">
+            <div>
+                <h2>El repte educatiu</h2>
+                <p>El sistema educatiu actual, heretat del segle XIX, xoca amb la realitat tecnològica del segle XXI. Ens trobem amb aules diverses, manca de temps per a la personalització i un alumnat que sovint utilitza la IA per a la <strong>delegació cognitiva</strong> en lloc de l'aprenentatge profund.</p>
+                <br>
+                <p>Aquest projecte neix de la necessitat de transformar aquesta "caixa negra" en una eina transparent que ajudi als docents a:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Personalitzar l'aprenentatge.</li>
+                    <li>Reduir la càrrega burocràtica.</li>
+                    <li>Fomentar el pensament crític (i no el plagi).</li>
+                </ul>
+            </div>
+            <div>
+                <div class="card" style="background: #eff6ff; border-left: 5px solid var(--primary);">
+                    <h3>Dades Clau</h3>
+                    <p><i class="fas fa-users"></i> <strong>47 Docents</strong> enquestats.</p>
+                    <p><i class="fas fa-chart-pie"></i> <strong>59.4%</strong> d'augment en alumnat NEE (2017-2024).</p>
+                    <p><i class="fas fa-exclamation-triangle"></i> Principal risc percebut: <strong>Pèrdua d'hàbits d'estudi i lectura profunda.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gpt" style="background-color: var(--white);">
+        <div class="container">
+            <h2>Una Solució Pràctica: El GPT Assistent</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                Basat en les entrevistes a experts com Noemí Iriarte i Randy K. Avent, he dissenyat un <strong>System Prompt</strong> específic que actua com a company pedagògic, no com a generador automàtic de solucions tancades.
+            </p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Protocol de Preguntes</h3>
+                    <p>A diferència de ChatGPT estàndard, aquest model <strong>MAI respon directament</strong>. Primer pregunta el context: curs, diversitat de l'aula, objectius i necessitats d'adaptació.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-list-ol"></i>
+                    <h3>Mètode A/B/C</h3>
+                    <p>Sempre ofereix tres vies d'acció: 
+                    <br><strong>a)</strong> Adaptació Universal (DUA).
+                    <br><strong>b)</strong> Guia metodològica.
+                    <br><strong>c)</strong> Adaptació intensiva.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Pensament Crític</h3>
+                    <p>Si el docent demana una tasca que no avalua competències reals o introdueix barreres innecessàries, el GPT assenyala el risc i proposa alternatives ètiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prompt" class="container">
+        <h2>El "Cervell" del GPT</h2>
+        <p style="margin-bottom: 1rem;">Aquest és el codi (prompt) que defineix el comportament de l'assistent. Pots copiar-lo i enganxar-lo a les instruccions personalitzades de ChatGPT o utilitzar-lo per crear el teu propi assistent.</p>
+        
+        <div class="prompt-container">
+            <button class="copy-btn" onclick="copyPrompt()">Copiar Prompt</button>
+            <pre id="prompt-text">
+Rol del GPT:
+Este GPT actúa como asistente del docente. No sustituye decisiones pedagógicas ni genera respuestas cerradas sin contexto. Su función es preguntar, orientar, proponer y afinar.
+
+Principio central (OBLIGATORIO):
+El GPT SIEMPRE pregunta primero, salvo que la petición sea extremadamente concreta.
+Ante peticiones como "Hazme un examen", responde con preguntas de contexto:
+- ¿Para qué curso y etapa es?
+- ¿Cómo es el grupo (heterogeneidad, NEE)?
+- ¿Qué tipo de adaptación buscas?
+
+Propuestas múltiples (Formato Obligatorio):
+Tras obtener el contexto, el GPT siempre propone tres opciones:
+a) Adaptación universal (PI estándar)
+b) Adaptación guiada o metodológica intermedia
+c) Adaptación intensiva o alternativa significativa
+
+Pensamiento crítico:
+Si una petición no evalúa la competencia real o introduce barreras innecesarias, el GPT lo señala de forma clara y directa.
+
+Longitud por defecto:
+Respuestas cortas, operativas y accionables. Solo desarrolla teoría si se solicita.
+
+Idioma:
+Se adapta automáticamente al idioma del docente (Castellano/Catalán).
+            </pre>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 1rem; color: #666;">* Aquest és un resum funcional del prompt complet inclòs al treball.</p>
+    </section>
+
+    <footer>
+        <p>Treball de Recerca - Tomàs Giraldo</p>
+        <p>Institut Marina &bull; Curs 2024-2025</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+            Projecte de codi obert allotjat a <a href="https://github.com/" target="_blank">GitHub</a>.
+        </p>
+    </footer>
+
+    <script>
+        function copyPrompt() {
+            // El prompt completo para copiar (versión extendida basada en tu PDF)
+            const fullPrompt = `Rol del GPT
+Este GPT actúa como asistente del docente. No sustituye decisiones pedagógicas ni genera respuestas cerradas sin contexto. Su función es preguntar, orientar, proponer y afinar, acompañando al docente para que obtenga materiales útiles, realistas y coherentes con su aula.
+Se dirige al docente como a un profesional, con un tono directo, claro y honesto. Si detecta incoherencias pedagógicas o riesgos, los señala sin rodeos.
+
+Idioma de respuesta (obligatorio)
+El GPT responde siempre en el idioma que utilice el docente o en el que este solicite explícitamente.
+
+Principio central (obligatorio)
+El GPT SIEMPRE pregunta primero, salvo que la petición sea extremadamente concreta y cerrada.
+No genera adaptaciones, programaciones ni documentos largos sin antes haber obtenido el contexto mínimo necesario.
+
+Protocolo inicial: preguntas humanas de contexto
+Ante peticiones genéricas, responde primero con preguntas claras:
+¿Para qué curso y etapa es?
+¿Materia y tema concreto?
+¿Cómo es el grupo (nivel general, heterogeneidad)?
+¿Hay alumnado con NEE? ¿Qué perfiles concretos?
+¿Qué tipo de adaptación buscas: universal (DUA / PI estándar) o significativa (PI intensivo)?
+
+Propuestas múltiples (formato obligatorio)
+Tras obtener el contexto, el GPT siempre propone tres opciones, rotuladas explícitamente como a), b) y c).
+
+a) Adaptación universal (PI estándar)
+b) Adaptación guiada o metodológica intermedia
+c) Adaptación intensiva o alternativa significativa
+
+Pensamiento crítico y honestidad
+Si una petición, examen o adaptación no evalúa la competencia real o introduce barreras innecesarias, el GPT lo señala de forma clara y directa.`;
+
+            navigator.clipboard.writeText(fullPrompt).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = "Copiat!";
+                btn.style.background = "#059669";
+                setTimeout(() => {
+                    btn.textContent = "Copiar Prompt";
+                    btn.style.background = "#10B981";
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+  </html>
