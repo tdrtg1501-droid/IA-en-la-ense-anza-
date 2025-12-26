@@ -10,189 +10,140 @@
 
 <body>
   <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="#top">
-        <span class="brand__dot" aria-hidden="true"></span>
-        <span class="brand__text">IA en la Enseñanza</span>
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#inicio" aria-label="Inicio">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">IA en la Enseñanza</span>
       </a>
 
       <nav class="nav" aria-label="Menú">
-        <a href="#inicio" class="nav__link is-active" data-i18n="nav_home">Inicio</a>
-        <a href="#tdr" class="nav__link" data-i18n="nav_tdr">¿Qué es un TDR?</a>
-        <a href="#marco" class="nav__link" data-i18n="nav_theory">Marco teórico</a>
-        <a href="#por-que" class="nav__link" data-i18n="nav_why">¿Por qué IA?</a>
-        <a href="#estudio" class="nav__link" data-i18n="nav_study">Estudio</a>
-        <a href="#gpt" class="nav__link" data-i18n="nav_gpt">GPT</a>
-        <a href="#recursos" class="nav__link" data-i18n="nav_resources">Recursos</a>
+        <a class="nav__link" href="#tdr" data-i18n="nav_tdr">TDR</a>
+        <a class="nav__link" href="#marco" data-i18n="nav_theory">Marco teórico</a>
+        <a class="nav__link" href="#por-que" data-i18n="nav_why">Implementación</a>
+        <a class="nav__link" href="#estudio" data-i18n="nav_study">Estudio</a>
+        <a class="nav__link" href="#gpt" data-i18n="nav_gpt">GPT</a>
+        <a class="nav__link" href="#recursos" data-i18n="nav_resources">Recursos</a>
       </nav>
 
-      <div class="topbar__actions">
+      <div class="actions">
         <div class="lang" role="group" aria-label="Idioma">
           <button class="lang__btn is-active" type="button" data-lang="es">ES</button>
           <button class="lang__btn" type="button" data-lang="ca">CA</button>
         </div>
-
-        <button class="btn btn--ghost" id="themeBtn" type="button" aria-label="Cambiar tema">
-          Tema
-        </button>
+        <button class="theme" id="themeBtn" type="button" aria-label="Cambiar tema">☼</button>
       </div>
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO: primera pantalla -->
-    <section id="inicio" class="hero">
-      <div class="container hero__inner">
-        <div class="hero__content">
-          <p class="kicker" data-i18n="kicker">Treball de Recerca (TDR)</p>
+  <!-- HERO (imagen grande + texto suelto, estilo editorial) -->
+  <main id="inicio">
+    <section class="hero">
+      <!-- Cambia esta imagen cuando me pases la tuya -->
+      <div class="hero__bg" role="img" aria-label="Fondo"></div>
+      <div class="wrap hero__content">
+        <p class="hero__kicker" data-i18n="kicker">Treball de Recerca (TDR)</p>
+        <h1 class="hero__title">
+          <span data-i18n="title_1">Inteligencia Artificial</span><br>
+          <span data-i18n="title_2">en la Enseñanza</span>
+        </h1>
+        <p class="hero__lead" data-i18n="subtitle">
+          Guía práctica y crítica para integrar IA en el aula: beneficios, límites, estudio real y un GPT asistente para docentes.
+        </p>
 
-          <h1 class="hero__title">
-            <span data-i18n="title_1">Inteligencia Artificial</span><br />
-            <span data-i18n="title_2">en la Enseñanza</span>
-          </h1>
-
-          <p class="hero__subtitle" data-i18n="subtitle">
-            Guía práctica y crítica para integrar IA en el aula: beneficios, límites, estudio real y un GPT asistente para docentes.
-          </p>
-
-          <div class="hero__cta">
-            <a class="btn" href="#por-que" data-i18n="cta_1">Ver el apartado clave</a>
-            <a class="btn btn--ghost" href="#gpt" data-i18n="cta_2">Ir al GPT</a>
-          </div>
-
-          <div class="badges">
-            <span class="badge" data-i18n="badge_1">Seriedad + innovación</span>
-            <span class="badge" data-i18n="badge_2">Evidencia + práctica</span>
-            <span class="badge" data-i18n="badge_3">Docentes + alumnado</span>
-          </div>
+        <div class="hero__meta">
+          <span class="meta" data-i18n="m1">Guía práctica</span>
+          <span class="meta" data-i18n="m2">Estudio real</span>
+          <span class="meta" data-i18n="m3">GPT para docentes</span>
         </div>
 
-        <div class="hero__panel">
-          <div class="panel">
-            <h3 data-i18n="panel_title">Accesos rápidos</h3>
-
-            <div class="panel__grid">
-              <a class="panel__tile" href="#tdr">
-                <div class="panel__tileTitle" data-i18n="panel_t1">¿Qué es un TDR?</div>
-                <div class="panel__tileText" data-i18n="panel_t1s">Explicación clara + ampliación desplegable.</div>
-              </a>
-
-              <a class="panel__tile" href="#marco">
-                <div class="panel__tileTitle" data-i18n="panel_t2">Marco teórico</div>
-                <div class="panel__tileText" data-i18n="panel_t2s">IA, ChatGPT, usos y límites.</div>
-              </a>
-
-              <a class="panel__tile" href="#estudio">
-                <div class="panel__tileTitle" data-i18n="panel_t3">Estudio</div>
-                <div class="panel__tileText" data-i18n="panel_t3s">Datos, Excel y correlaciones.</div>
-              </a>
-
-              <a class="panel__tile" href="#recursos">
-                <div class="panel__tileTitle" data-i18n="panel_t4">Recursos</div>
-                <div class="panel__tileText" data-i18n="panel_t4s">PDF, links y herramientas.</div>
-              </a>
-            </div>
-
-            <div class="panel__note">
-              <p class="muted" data-i18n="panel_note">
-                *Versión alpha: iremos añadiendo tus imágenes, el PDF y los links reales.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero__scrollHint" aria-hidden="true">
-        <span class="dot"></span>
-        <span class="muted" data-i18n="scroll">Desliza para explorar</span>
+        <a class="hero__link" href="#tdr" data-i18n="scroll">Explorar ↓</a>
       </div>
     </section>
 
-    <!-- ¿QUÉ ES UN TDR? (mitad texto / mitad imagen + desplegable) -->
-    <section id="tdr" class="section">
-      <div class="container">
-        <div class="section__header">
+    <!-- TDR (2 columnas con mucho aire, sin “tarjetas”) -->
+    <section id="tdr" class="band">
+      <div class="wrap">
+        <div class="band__header">
           <h2 data-i18n="tdr_h2">¿Qué es un TDR?</h2>
-          <p class="muted" data-i18n="tdr_intro">
-            Un trabajo de investigación de bachillerato: planteas una pregunta real, aplicas una metodología y llegas a conclusiones propias.
+          <p class="band__sub" data-i18n="tdr_intro">
+            Un trabajo de investigación de bachillerato: planteas una pregunta, recoges evidencia y construyes una conclusión propia con un producto final.
           </p>
         </div>
 
-        <div class="split">
-          <div class="card">
-            <h3 data-i18n="tdr_q">La pregunta que guía el proyecto</h3>
-            <p class="muted" data-i18n="tdr_p1">
+        <div class="cols">
+          <div>
+            <h3 class="h3" data-i18n="tdr_q">La pregunta que guía este proyecto</h3>
+            <p class="p" data-i18n="tdr_p1">
               ¿Cómo está cambiando la IA el aprendizaje y el trabajo docente, y cuándo tiene sentido implementarla en el aula sin perder calidad educativa?
             </p>
 
-            <details class="accordion">
+            <details class="details">
               <summary data-i18n="tdr_more">Leer en detalle</summary>
-              <div class="accordion__content">
-                <p class="muted" data-i18n="tdr_detail">
-                  Un TDR no es “copiar y pegar información”: es formular un problema, recoger datos (encuestas, entrevistas, observación), analizar resultados
-                  y construir una propuesta o producto final. En este caso, el producto no es una maqueta: es una guía práctica y un GPT asistente docente,
-                  con una mirada crítica (riesgos, sesgos, dependencia) y aplicada (casos de uso reales).
+              <div class="details__body">
+                <p class="p" data-i18n="tdr_detail">
+                  Un TDR no es “copiar y pegar información”: es formular un problema, recoger datos (encuestas, entrevistas, observación),
+                  analizar resultados y construir una propuesta. En este caso, el producto final es una guía práctica y un GPT asistente docente.
                 </p>
               </div>
             </details>
           </div>
 
-          <div class="card media">
-            <div class="media__box">
-              <div class="media__label" data-i18n="img_placeholder">Imagen aquí (placeholder)</div>
-              <div class="media__hint muted" data-i18n="img_hint">Cuando me pases imágenes, las coloco y ajusto tamaños.</div>
+          <div class="media">
+            <div class="media__img" aria-hidden="true"></div>
+            <p class="caption" data-i18n="img_hint">
+              (Placeholder) Aquí irá una imagen tuya: logo, aula, gráfica o captura del GPT.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARCO TEÓRICO (simple, sin cajas; acordeones para ampliar) -->
+    <section id="marco" class="band band--soft">
+      <div class="wrap">
+        <div class="band__header">
+          <h2 data-i18n="theory_h2">Marco teórico</h2>
+          <p class="band__sub" data-i18n="theory_intro">
+            Resúmenes cortos + ampliación desplegable. Sin saturar la página.
+          </p>
+        </div>
+
+        <div class="stack">
+          <div class="row">
+            <div>
+              <h3 class="h3" data-i18n="theory_1t">¿Qué es la IA?</h3>
+              <p class="p muted" data-i18n="theory_1s">Sistemas que aprenden patrones para tomar decisiones o generar contenido.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MARCO TEÓRICO (cards + desplegables) -->
-    <section id="marco" class="section section--alt">
-      <div class="container">
-        <div class="section__header">
-          <h2 data-i18n="theory_h2">Marco teórico (resumen + ampliación)</h2>
-          <p class="muted" data-i18n="theory_intro">
-            Explicaciones cortas, y si quieres profundizar: desplegable con “más info” (sin salir de la página).
-          </p>
-        </div>
-
-        <div class="grid3">
-          <div class="card">
-            <h3 data-i18n="theory_1t">¿Qué es la IA?</h3>
-            <p class="muted" data-i18n="theory_1s">Sistemas que aprenden patrones para tomar decisiones o generar contenido.</p>
-            <details class="accordion">
+            <details class="details details--row">
               <summary data-i18n="more_info">Más info</summary>
-              <div class="accordion__content">
-                <p class="muted" data-i18n="theory_1l">
-                  Aquí pondremos tu explicación larga y, si quieres, el enlace al apartado exacto del TDR.
-                </p>
+              <div class="details__body">
+                <p class="p" data-i18n="theory_1l">Aquí pondremos tu explicación larga y el link al apartado exacto del TDR.</p>
               </div>
             </details>
           </div>
 
-          <div class="card">
-            <h3 data-i18n="theory_2t">¿Cómo funciona ChatGPT?</h3>
-            <p class="muted" data-i18n="theory_2s">Predice la siguiente palabra a partir de contexto, entrenado con muchos textos.</p>
-            <details class="accordion">
+          <div class="row">
+            <div>
+              <h3 class="h3" data-i18n="theory_2t">¿Cómo funciona ChatGPT?</h3>
+              <p class="p muted" data-i18n="theory_2s">Predice texto según contexto; requiere verificación y criterio.</p>
+            </div>
+            <details class="details details--row">
               <summary data-i18n="more_info">Más info</summary>
-              <div class="accordion__content">
-                <p class="muted" data-i18n="theory_2l">
-                  Explicación ampliada: modelos de lenguaje, prompts, alucinaciones, verificación y límites.
-                </p>
+              <div class="details__body">
+                <p class="p" data-i18n="theory_2l">Modelos de lenguaje, prompts, alucinaciones, límites y buenas prácticas.</p>
               </div>
             </details>
           </div>
 
-          <div class="card">
-            <h3 data-i18n="theory_3t">¿Qué permite hacer?</h3>
-            <p class="muted" data-i18n="theory_3s">Personalizar, resumir, generar ejercicios, feedback y apoyo docente.</p>
-            <details class="accordion">
+          <div class="row">
+            <div>
+              <h3 class="h3" data-i18n="theory_3t">¿Qué nos permite hacer?</h3>
+              <p class="p muted" data-i18n="theory_3s">Personalizar, generar actividades, feedback y apoyo docente.</p>
+            </div>
+            <details class="details details--row">
               <summary data-i18n="more_info">Más info</summary>
-              <div class="accordion__content">
-                <p class="muted" data-i18n="theory_3l">
-                  Aquí conectaremos con tu práctica: adaptaciones, rúbricas, programación, burocracia.
-                </p>
+              <div class="details__body">
+                <p class="p" data-i18n="theory_3l">Conectaremos con tu práctica: adaptaciones, rúbricas, planificación y burocracia.</p>
               </div>
             </details>
           </div>
@@ -200,65 +151,40 @@
       </div>
     </section>
 
-    <!-- POR QUÉ IMPLEMENTAR IA -->
-    <section id="por-que" class="section">
-      <div class="container">
-        <div class="section__header">
+    <!-- IMPLEMENTACIÓN (tu apartado estrella) -->
+    <section id="por-que" class="band">
+      <div class="wrap">
+        <div class="band__header">
           <h2 data-i18n="why_h2">¿Por qué implementar IA en la enseñanza?</h2>
-          <p class="muted" data-i18n="why_intro">
-            La tesis: usar IA cuando aporte más beneficios que riesgos y descargue trabajo real al docente, sin sustituir la pedagogía.
+          <p class="band__sub" data-i18n="why_intro">
+            Usarla cuando aporte más pros que contras y descargue trabajo real al docente, sin sustituir la pedagogía.
           </p>
         </div>
 
-        <div class="grid2">
-          <div class="card">
-            <h3 data-i18n="why_1t">Criterio: más pros que contras</h3>
-            <p class="muted" data-i18n="why_1s">
-              Tiene sentido si mejora aprendizaje, reduce carga y mantiene supervisión humana (y no genera dependencia).
-            </p>
+        <div class="bullets">
+          <div class="bullet">
+            <h3 class="h3" data-i18n="why_1t">Criterio: más pros que contras</h3>
+            <p class="p muted" data-i18n="why_1s">Tiene sentido si mejora aprendizaje, reduce carga y mantiene supervisión humana.</p>
           </div>
-
-          <div class="card">
-            <h3 data-i18n="why_2t">Cuando el entorno “obliga”</h3>
-            <p class="muted" data-i18n="why_2s">
-              Si el alumnado ya usa IA, ignorarlo es perder la oportunidad de enseñar criterio, verificación y ética.
-            </p>
+          <div class="bullet">
+            <h3 class="h3" data-i18n="why_2t">Cuando el entorno “obliga”</h3>
+            <p class="p muted" data-i18n="why_2s">Si el alumnado ya la usa, toca enseñar criterio, ética y verificación.</p>
           </div>
-
-          <div class="card">
-            <h3 data-i18n="why_3t">Metáfora: mechero y calculadora</h3>
-            <p class="muted" data-i18n="why_3s">
-              No es magia: acelera procesos, pero si no entiendes el fundamento, te puede quemar o dar resultados sin sentido.
-            </p>
+          <div class="bullet">
+            <h3 class="h3" data-i18n="why_3t">Metáfora: mechero y calculadora</h3>
+            <p class="p muted" data-i18n="why_3s">Acelera procesos, pero sin base puede “quemar” o dar resultados vacíos.</p>
           </div>
-
-          <div class="card">
-            <h3 data-i18n="why_4t">Diversidad y personalización</h3>
-            <p class="muted" data-i18n="why_4s">
-              Facilita adaptaciones (NEE/PI), accesibilidad y diferentes ritmos sin multiplicar la carga.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3 data-i18n="why_5t">Competencias del futuro</h3>
-            <p class="muted" data-i18n="why_5s">
-              Alfabetización en IA, pensamiento crítico, evaluación de fuentes, y comunicación con herramientas.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3 data-i18n="why_6t">Acompañamiento, no sustitución</h3>
-            <p class="muted" data-i18n="why_6s">
-              La IA apoya; el docente decide: objetivos, evaluación, contexto emocional y didáctica.
-            </p>
+          <div class="bullet">
+            <h3 class="h3" data-i18n="why_4t">Diversidad y personalización</h3>
+            <p class="p muted" data-i18n="why_4s">Apoya adaptaciones (NEE/PI) y ritmos distintos sin multiplicar la carga.</p>
           </div>
         </div>
 
-        <details class="accordion accordion--wide">
-          <summary data-i18n="why_more">Ver el desarrollo completo (alpha)</summary>
-          <div class="accordion__content">
-            <p class="muted" data-i18n="why_long">
-              Aquí añadiremos tu texto largo, con estructura de argumentación y referencias al TDR (y luego el link al PDF / apartado exacto).
+        <details class="details">
+          <summary data-i18n="why_more">Ver desarrollo completo</summary>
+          <div class="details__body">
+            <p class="p" data-i18n="why_long">
+              Aquí añadiremos tu argumentario largo, con referencias al TDR y ejemplos reales.
             </p>
           </div>
         </details>
@@ -266,91 +192,72 @@
     </section>
 
     <!-- ESTUDIO -->
-    <section id="estudio" class="section section--alt">
-      <div class="container">
-        <div class="section__header">
-          <h2 data-i18n="study_h2">Estudio: datos y correlaciones</h2>
-          <p class="muted" data-i18n="study_intro">
-            Aquí irá el acceso a Excel, gráficos y una explicación entendible de las correlaciones encontradas.
+    <section id="estudio" class="band band--soft">
+      <div class="wrap">
+        <div class="band__header">
+          <h2 data-i18n="study_h2">Estudio</h2>
+          <p class="band__sub" data-i18n="study_intro">
+            Acceso a Excel y explicación clara de correlaciones (qué significan y por qué importan).
           </p>
         </div>
 
-        <div class="grid2">
-          <div class="card">
-            <h3 data-i18n="study_1t">Descargas / enlaces</h3>
-            <p class="muted" data-i18n="study_1s">
-              Añadiremos: Excel, correlaciones, visualizaciones y capturas.
-            </p>
+        <div class="cols cols--tight">
+          <div>
+            <h3 class="h3" data-i18n="study_1t">Excel / gráficos</h3>
+            <p class="p muted" data-i18n="study_1s">Aquí irán enlaces, descargas o embeds de tus visualizaciones.</p>
           </div>
-          <div class="card">
-            <h3 data-i18n="study_2t">Correlaciones (resumen)</h3>
-            <p class="muted" data-i18n="study_2s">
-              Pendiente: lista de correlaciones clave + explicación “qué significa y por qué importa”.
-            </p>
+          <div>
+            <h3 class="h3" data-i18n="study_2t">Correlaciones</h3>
+            <p class="p muted" data-i18n="study_2s">Pondremos las correlaciones clave con explicación “en castellano humano”.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- GPT -->
-    <section id="gpt" class="section">
-      <div class="container">
-        <div class="section__header">
+    <section id="gpt" class="band">
+      <div class="wrap">
+        <div class="band__header">
           <h2 data-i18n="gpt_h2">GPT asistente docente</h2>
-          <p class="muted" data-i18n="gpt_intro">
-            Qué es, para qué sirve, a quién va dirigido y ejemplos listos de uso.
+          <p class="band__sub" data-i18n="gpt_intro">
+            Qué es, para qué sirve, a quién va dirigido y ejemplos de uso.
           </p>
         </div>
 
-        <div class="grid3">
-          <div class="card">
-            <h3 data-i18n="gpt_1t">¿Qué es un GPT?</h3>
-            <p class="muted" data-i18n="gpt_1s">Un asistente configurado con instrucciones y recursos para una tarea concreta.</p>
+        <div class="cols cols--tight">
+          <div>
+            <h3 class="h3" data-i18n="gpt_1t">Qué es</h3>
+            <p class="p muted" data-i18n="gpt_1s">Un asistente configurado con instrucciones y recursos para tareas educativas.</p>
           </div>
-          <div class="card">
-            <h3 data-i18n="gpt_2t">¿Para qué sirve?</h3>
-            <p class="muted" data-i18n="gpt_2s">Adaptaciones, actividades, rúbricas, planificación, y apoyo en burocracia.</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="gpt_3t">Ejemplos</h3>
-            <p class="muted" data-i18n="gpt_3s">Casos reales: “adaptar examen”, “PI/NEE”, “situación de aprendizaje”.</p>
+          <div>
+            <h3 class="h3" data-i18n="gpt_2t">Qué hace</h3>
+            <p class="p muted" data-i18n="gpt_2s">Adaptaciones, actividades, rúbricas, planificación y apoyo en burocracia.</p>
           </div>
         </div>
 
-        <details class="accordion accordion--wide">
-          <summary data-i18n="gpt_more">Añadir link del GPT + ejemplos (alpha)</summary>
-          <div class="accordion__content">
-            <p class="muted" data-i18n="gpt_long">
-              Cuando me pases el link oficial del GPT, lo pongo aquí con botones y capturas.
-            </p>
+        <details class="details">
+          <summary data-i18n="gpt_more">Añadir link + ejemplos</summary>
+          <div class="details__body">
+            <p class="p" data-i18n="gpt_long">Cuando me pases el link del GPT, lo ponemos aquí con botones discretos y capturas.</p>
           </div>
         </details>
       </div>
     </section>
 
     <!-- RECURSOS -->
-    <section id="recursos" class="section section--alt">
-      <div class="container">
-        <div class="section__header">
+    <section id="recursos" class="band band--soft">
+      <div class="wrap">
+        <div class="band__header">
           <h2 data-i18n="res_h2">Recursos</h2>
-          <p class="muted" data-i18n="res_intro">
+          <p class="band__sub" data-i18n="res_intro">
             PDF del trabajo, NotebookLM, Aula de Medios, bibliografía y herramientas.
           </p>
         </div>
 
-        <div class="grid2">
-          <div class="card">
-            <h3 data-i18n="res_1t">PDF / enlaces</h3>
-            <p class="muted" data-i18n="res_1s">Añadiremos botones cuando tengas los links finales.</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="res_2t">Bibliografía</h3>
-            <p class="muted" data-i18n="res_2s">Lista limpia (APA) y links relevantes.</p>
-          </div>
-        </div>
+        <p class="p muted" data-i18n="res_1s">Añadiremos los enlaces finales cuando los tengas listos.</p>
 
         <footer class="footer">
-          <p class="muted">© TDR — IA en la Enseñanza · Alpha</p>
+          <p class="caption">© TDR — IA en la Enseñanza · Alpha</p>
         </footer>
       </div>
     </section>
