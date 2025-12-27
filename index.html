@@ -4,146 +4,181 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IA en la Enseñanza — TDR</title>
-  <meta name="description" content="TDR sobre Inteligencia Artificial en la enseñanza + portal del GPT asistente docente." />
+
+  <meta name="description" content="Trabajo de Investigación (TDR) sobre Inteligencia Artificial en la Enseñanza. Guía crítica, estudio real y GPT asistente para docentes." />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="wrap topbar__inner">
-      <a class="brand" href="#inicio" aria-label="Inicio">
-        <span class="brand__dot" aria-hidden="true"></span>
-        <span class="brand__text">IA en la Enseñanza</span>
-      </a>
 
-      <nav class="nav" aria-label="Menú">
-        <a class="nav__link" href="#inicio">Home</a>
-        <a class="nav__link" href="#portales">Portales</a>
-        <a class="nav__link" href="#faq">Preguntas</a>
-        <!-- Más adelante: Trabajo | GPT | Estudio -->
+  <!-- ===== HEADER / MENÚ ===== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-text">IA en la Enseñanza</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#inicio">Home</a>
+        <a href="#marco">Marco teórico</a>
+        <a href="#practica">Parte práctica</a>
+        <a href="#estudio">Estudio</a>
+        <a href="#recursos">Recursos</a>
       </nav>
 
-      <div class="actions">
-        <div class="lang" role="group" aria-label="Idioma">
-          <button class="lang__btn is-active" type="button" data-lang="es">ES</button>
-          <button class="lang__btn" type="button" data-lang="ca">CA</button>
-        </div>
-        <button class="theme" id="themeBtn" type="button" aria-label="Cambiar tema">☼</button>
+      <div class="controls">
+        <button class="lang">ES</button>
+        <button class="lang">CA</button>
+        <button class="theme">☀︎</button>
       </div>
     </div>
   </header>
 
-  <main id="inicio">
-    <!-- HERO con imagen de fondo -->
-    <section class="hero">
-      <div class="hero__bg" aria-hidden="true"></div>
+  <!-- ===== HERO / PRIMERA PANTALLA ===== -->
+  <main id="inicio" class="hero">
+    <div class="hero-content">
+      <p class="hero-kicker">Treball de Recerca (TDR)</p>
 
-      <div class="wrap hero__content">
-        <p class="hero__kicker" data-i18n="kicker">Treball de Recerca (TDR)</p>
+      <h1>
+        Inteligencia Artificial<br>
+        <span>en la Enseñanza</span>
+      </h1>
 
-        <h1 class="hero__title">
-          <span data-i18n="title_1">Inteligencia Artificial</span><br />
-          <span data-i18n="title_2">en la Enseñanza</span>
-        </h1>
+      <p class="hero-subtitle">
+        Guía práctica y crítica para integrar IA en el aula:
+        beneficios, límites, estudio real y un GPT asistente para docentes.
+      </p>
 
-        <p class="hero__subtitle" data-i18n="subtitle">
-          Guía práctica y crítica para integrar IA en el aula: beneficios, límites, estudio real y un GPT asistente para docentes.
+      <div class="hero-actions">
+        <button class="pill">Guía práctica</button>
+        <button class="pill">Estudio real</button>
+        <button class="pill">GPT para docentes</button>
+      </div>
+
+      <p class="scroll-hint">Desliza para explorar ↓</p>
+    </div>
+  </main>
+
+  <!-- ===== ¿QUÉ ES UN TDR? ===== -->
+  <section class="section split">
+    <div class="text">
+      <h2>¿Qué es un TDR?</h2>
+
+      <p>
+        Un trabajo de investigación de bachillerato en el que planteas una
+        pregunta real, aplicas una metodología y llegas a conclusiones propias,
+        acompañadas de un producto final.
+      </p>
+
+      <h3>La pregunta que guía el proyecto</h3>
+
+      <p class="question">
+        ¿Cómo está cambiando la IA el aprendizaje y el trabajo docente,
+        y cuándo tiene sentido implementarla en el aula sin perder calidad educativa?
+      </p>
+
+      <details class="expand">
+        <summary>Leer en detalle</summary>
+        <p>
+          Este TDR analiza la IA desde una perspectiva educativa real:
+          cuándo aporta valor, cuándo genera más problemas que soluciones
+          y cómo puede utilizarse como herramienta de acompañamiento,
+          no de sustitución del docente.
+        </p>
+      </details>
+    </div>
+
+    <div class="image placeholder">
+      Imagen / gráfico / aula / GPT
+    </div>
+  </section>
+
+  <!-- ===== MARCO TEÓRICO ===== -->
+  <section id="marco" class="section">
+    <h2>Marco teórico</h2>
+    <p class="section-intro">
+      Resúmenes claros con ampliación desplegable.
+      Cada apartado deja espacio visual y alterna imagen.
+    </p>
+
+    <!-- 1.1 -->
+    <div class="split alt">
+      <div class="text">
+        <h3>1.1 ¿Qué es la Inteligencia Artificial?</h3>
+        <p>
+          Sistemas capaces de aprender patrones a partir de datos
+          para tomar decisiones o generar contenido.
         </p>
 
-        <div class="hero__hint" data-i18n="scroll">Desliza para explorar</div>
-      </div>
-    </section>
-
-    <!-- PANEL PRINCIPAL / HOME: 2 portales -->
-    <section id="portales" class="band">
-      <div class="wrap">
-        <header class="band__header">
-          <h2 data-i18n="portals_h2">Panel principal</h2>
-          <p class="band__sub" data-i18n="portals_sub">
-            Dos accesos: el portal del trabajo (TDR) y el portal del GPT.
+        <details class="expand">
+          <summary>Más información</summary>
+          <p>
+            Se explican conceptos como aprendizaje automático,
+            modelos de lenguaje y la diferencia entre IA débil y fuerte,
+            siempre aterrizado al contexto educativo.
           </p>
-        </header>
-
-        <div class="portals">
-          <!-- Portal TDR -->
-          <article class="portal">
-            <div class="portal__media" aria-hidden="true"></div>
-            <div class="portal__body">
-              <h3 class="portal__title" data-i18n="tdr_portal_title">Portal del trabajo de investigación</h3>
-              <p class="portal__text" data-i18n="tdr_portal_text">
-                Accede al PDF del TDR, a los enlaces clave y a una versión resumida del marco teórico.
-              </p>
-              <div class="portal__actions">
-                <a class="btn" href="#" data-i18n="tdr_btn_primary">Entrar al portal del TDR</a>
-                <a class="btn btn--ghost" href="#faq" data-i18n="tdr_btn_secondary">Ver preguntas</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Portal GPT -->
-          <article class="portal">
-            <div class="portal__media portal__media--gpt" aria-hidden="true"></div>
-            <div class="portal__body">
-              <h3 class="portal__title" data-i18n="gpt_portal_title">Portal del GPT</h3>
-              <p class="portal__text" data-i18n="gpt_portal_text">
-                Qué es el GPT, para quién va dirigido, ejemplos de uso y acceso directo al asistente.
-              </p>
-              <div class="portal__actions">
-                <a class="btn" href="#" data-i18n="gpt_btn_primary">Acceder al portal del GPT</a>
-                <a class="btn btn--ghost" href="#" data-i18n="gpt_btn_secondary">Ver ejemplos</a>
-              </div>
-            </div>
-          </article>
-        </div>
+        </details>
       </div>
-    </section>
 
-    <!-- Preguntas / FAQ -->
-    <section id="faq" class="band band--soft">
-      <div class="wrap">
-        <header class="band__header">
-          <h2 data-i18n="faq_h2">Puedes encontrar respuestas a…</h2>
-          <p class="band__sub" data-i18n="faq_sub">
-            (Alpha) Esto será el “índice rápido” de dudas típicas. Luego lo conectamos con secciones reales.
+      <div class="image placeholder">
+        Imagen IA
+      </div>
+    </div>
+
+    <!-- 1.2 -->
+    <div class="split">
+      <div class="image placeholder">
+        Imagen ChatGPT
+      </div>
+
+      <div class="text">
+        <h3>1.2 ¿Cómo funciona ChatGPT?</h3>
+        <p>
+          Predice la siguiente palabra a partir del contexto,
+          entrenado con grandes volúmenes de texto.
+        </p>
+
+        <details class="expand">
+          <summary>Más información</summary>
+          <p>
+            Funcionamiento de los modelos de lenguaje,
+            límites, alucinaciones y por qué no “piensa”
+            como una persona.
           </p>
-        </header>
-
-        <div class="faq">
-          <details class="details">
-            <summary data-i18n="q1">¿Qué es la IA y por qué cuesta definirla?</summary>
-            <div class="details__body">
-              <p class="p muted" data-i18n="a1">
-                Explicación corta + ampliación. Aquí irá el texto largo del TDR y, si quieres, un enlace al apartado exacto.
-              </p>
-            </div>
-          </details>
-
-          <details class="details">
-            <summary data-i18n="q2">¿Cómo funciona ChatGPT y cuáles son sus límites?</summary>
-            <div class="details__body">
-              <p class="p muted" data-i18n="a2">
-                Modelos de lenguaje, prompts, alucinaciones, verificación y uso responsable en educación.
-              </p>
-            </div>
-          </details>
-
-          <details class="details">
-            <summary data-i18n="q3">¿Por qué implementar IA en la enseñanza?</summary>
-            <div class="details__body">
-              <p class="p muted" data-i18n="a3">
-                Criterio “más pros que contras”, metáfora mechero/calculadora, diversidad, competencias de futuro y acompañamiento.
-              </p>
-            </div>
-          </details>
-        </div>
-
-        <footer class="footer">
-          <p class="caption">© TDR — IA en la Enseñanza · Home (alpha)</p>
-        </footer>
+        </details>
       </div>
-    </section>
-  </main>
+    </div>
+
+    <!-- 1.3 -->
+    <div class="split alt">
+      <div class="text">
+        <h3>1.3 ¿Por qué implementar la IA en la enseñanza?</h3>
+        <p>
+          Solo cuando aporta más pros que contras,
+          reduce carga docente y mejora la atención a la diversidad.
+        </p>
+
+        <details class="expand">
+          <summary>Más información</summary>
+          <p>
+            Metáfora del mechero y la calculadora, competencias del futuro,
+            acompañamiento pedagógico y criterios de uso responsable.
+          </p>
+        </details>
+      </div>
+
+      <div class="image placeholder">
+        Imagen aula / diversidad
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>© TDR — IA en la Enseñanza · Versión alpha</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
