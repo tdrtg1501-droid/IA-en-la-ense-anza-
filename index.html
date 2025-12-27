@@ -3,221 +3,952 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>IA en la Enseñanza — TDR</title>
+  <meta name="description" content="Web del TDR sobre IA en la enseñanza: guía práctica, marco teórico, estudio real y GPT asistente para docentes." />
+  <meta name="theme-color" content="#6D28D9" />
 
-  <meta name="description"
-        content="Trabajo de Investigación (TDR) sobre Inteligencia Artificial en la Enseñanza. Guía crítica, estudio real y GPT asistente para docentes." />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --bg-soft:#F7F7FB;
+      --text:#0B1020;
+      --muted:#5B6275;
+      --border:#E6E7EF;
+      --shadow: 0 12px 30px rgba(16, 24, 40, .08);
+      --shadow2: 0 6px 16px rgba(16, 24, 40, .10);
+      --purple:#6D28D9;
+      --purple2:#8B5CF6;
+      --ring: 0 0 0 4px rgba(109,40,217,.18);
+      --radius: 18px;
+      --max: 1120px;
+      --navH: 72px;
+    }
 
-  <link rel="stylesheet" href="styles.css" />
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.5;
+    }
+    a{ color:inherit; text-decoration:none; }
+    button{ font-family:inherit; }
+    .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    /* Topbar */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      height:var(--navH);
+      background:rgba(255,255,255,.78);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(230,231,239,.7);
+    }
+    .topbar__inner{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:220px;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius:12px;
+      background: radial-gradient(120% 120% at 20% 10%, #A78BFA 0%, #6D28D9 45%, #111827 120%);
+      box-shadow: 0 10px 20px rgba(109,40,217,.25);
+      border:1px solid rgba(255,255,255,.65);
+    }
+    .brand__text{
+      display:flex; flex-direction:column;
+      line-height:1.05;
+    }
+    .brand__text strong{ font-size:14px; letter-spacing:.2px; }
+    .brand__text span{ font-size:12px; color:var(--muted); }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .nav a{
+      font-size:13px;
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius:12px;
+      transition: background .15s ease, color .15s ease;
+    }
+    .nav a:hover{ background:rgba(109,40,217,.08); color:var(--text); }
+    .nav a.active{ color:var(--text); background:rgba(109,40,217,.10); }
+
+    .actions{
+      display:flex; align-items:center; gap:10px;
+      min-width:220px;
+      justify-content:flex-end;
+    }
+    .lang{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:6px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#fff;
+      box-shadow: 0 6px 16px rgba(16,24,40,.06);
+    }
+    .lang button{
+      border:0;
+      padding:8px 10px;
+      border-radius:10px;
+      background:transparent;
+      color:var(--muted);
+      cursor:pointer;
+      font-size:12px;
+      font-weight:600;
+    }
+    .lang button[aria-pressed="true"]{
+      background:rgba(109,40,217,.12);
+      color:var(--text);
+    }
+
+    .pill{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow: 0 6px 16px rgba(16,24,40,.06);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:99px;
+      background: linear-gradient(135deg, var(--purple2), var(--purple));
+      box-shadow: 0 0 0 4px rgba(109,40,217,.14);
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height: calc(100vh - var(--navH));
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+    }
+    .hero__bg{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 500px at 20% 0%, rgba(139,92,246,.20), transparent 60%),
+        radial-gradient(900px 500px at 80% 10%, rgba(109,40,217,.18), transparent 55%),
+        linear-gradient(180deg, #0B1020 0%, #0B1020 35%, #101A3A 100%);
+    }
+    .hero__bg::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(11,16,32,.45) 0%, rgba(11,16,32,.80) 60%, rgba(255,255,255,1) 100%);
+      pointer-events:none;
+    }
+    /* Placeholder “imagen de fondo” */
+    .hero__imageHint{
+      position:absolute;
+      inset: 110px 24px auto auto;
+      width: min(420px, 40vw);
+      aspect-ratio: 16/10;
+      border-radius: 22px;
+      border: 1px dashed rgba(255,255,255,.35);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      text-align:center;
+      padding: 14px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
+    .hero__content{
+      position:relative;
+      padding: 44px 0 30px;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(255,255,255,.86);
+      font-size: 13px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+    }
+    .kicker .kdot{ width:10px; height:10px; border-radius:99px; background: linear-gradient(135deg, #A78BFA, #6D28D9); box-shadow: 0 0 0 4px rgba(109,40,217,.22); }
+
+    h1{
+      margin: 18px 0 10px;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.06;
+      letter-spacing: -1px;
+      color:#fff;
+      max-width: 18ch;
+    }
+    .subtitle{
+      margin: 0 0 20px;
+      font-size: clamp(14px, 1.55vw, 18px);
+      color: rgba(255,255,255,.82);
+      max-width: 68ch;
+    }
+    .hero__cta{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+    .btn{
+      border:1px solid transparent;
+      background: var(--purple);
+      color:#fff;
+      padding: 12px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight:700;
+      font-size: 13px;
+      box-shadow: 0 16px 34px rgba(109,40,217,.28);
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 18px 38px rgba(109,40,217,.34); background:#5B21B6; }
+    .btn.secondary{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.22);
+      color: rgba(255,255,255,.92);
+      box-shadow: none;
+    }
+    .btn.secondary:hover{ background: rgba(255,255,255,.14); transform: translateY(-1px); }
+
+    .scrollHint{
+      margin-top: 26px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+    }
+    .scrollHint .chev{
+      width: 26px; height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(255,255,255,.06);
+    }
+
+    /* Sections */
+    section{ padding: 68px 0; }
+    .sectionTitle{
+      font-size: 28px;
+      letter-spacing: -0.4px;
+      margin: 0 0 10px;
+    }
+    .sectionLead{
+      color: var(--muted);
+      margin: 0 0 26px;
+      max-width: 72ch;
+    }
+
+    /* Split blocks */
+    .split{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .brand{ min-width:auto; }
+      .actions{ min-width:auto; }
+      .split{ grid-template-columns: 1fr; }
+      .hero__imageHint{ display:none; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background:#fff;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card__media{
+      height: 220px;
+      background:
+        radial-gradient(900px 320px at 20% 10%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(700px 280px at 80% 20%, rgba(109,40,217,.20), transparent 55%),
+        linear-gradient(135deg, #F8FAFF 0%, #EEF2FF 35%, #FFFFFF 100%);
+      border-bottom: 1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:center;
+      padding: 16px;
+    }
+    .card__body{ padding: 18px 18px 18px; }
+    .card__body h3{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .card__body p{ margin: 0 0 14px; color: var(--muted); }
+    .card__actions{ display:flex; gap:10px; flex-wrap:wrap; }
+    .btn.small{ padding: 10px 12px; border-radius: 12px; font-size: 12px; }
+    .btn.ghost{
+      background: #fff;
+      color: var(--text);
+      border-color: var(--border);
+      box-shadow: var(--shadow2);
+    }
+    .btn.ghost:hover{ background: #F5F3FF; border-color: rgba(109,40,217,.25); box-shadow: var(--shadow); }
+    .mutedNote{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* “Qué es un TDR” block */
+    .panel{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-soft);
+      padding: 22px;
+      box-shadow: 0 10px 26px rgba(16,24,40,.05);
+    }
+    .qBlock h4{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .qBlock p{ margin: 0 0 12px; color: var(--muted); }
+    .keyQuestion{
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(109,40,217,.18);
+      background: rgba(109,40,217,.06);
+      color: #1B1333;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    details{
+      margin-top: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding: 12px 14px;
+      font-weight: 750;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .summaryLeft{
+      display:flex; align-items:center; gap:10px;
+    }
+    .tri{
+      width: 0; height: 0;
+      border-left: 7px solid var(--purple);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      transition: transform .15s ease;
+    }
+    details[open] .tri{ transform: rotate(90deg); }
+    .expandBody{
+      padding: 14px 14px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Footer */
+    footer{
+      padding: 40px 0 60px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    .foot{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+    .foot small{ display:block; max-width: 78ch; }
+    .linkRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .miniLink{
+      padding: 10px 12px;
+      border:1px solid var(--border);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 6px 16px rgba(16,24,40,.06);
+      font-size: 12px;
+    }
+    .miniLink:hover{ border-color: rgba(109,40,217,.25); background: #F5F3FF; }
+  </style>
 </head>
 
 <body>
-
-  <!-- ================= HEADER ================= -->
+  <!-- TOPBAR -->
   <header class="topbar">
-    <div class="topbar-inner">
+    <div class="container topbar__inner">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brand__text">
+          <strong data-i18n="brand">IA en la Enseñanza</strong>
+          <span data-i18n="brandSub">Web del TDR</span>
+        </div>
+      </a>
 
-      <div class="brand">
-        <span class="brand-dot"></span>
-        <span class="brand-text">IA en la Enseñanza</span>
-      </div>
-
-      <nav class="nav">
-        <a href="#inicio">Home</a>
-        <a href="#tdr">TDR</a>
-        <a href="#marco">Marco teórico</a>
-        <a href="#motivacion">Motivación</a>
+      <nav class="nav" aria-label="Menú principal">
+        <a href="#inicio" class="active" data-nav>Inicio</a>
+        <a href="#home-portales" data-nav data-i18n="navPortals">Portales</a>
+        <a href="#que-es-tdr" data-nav data-i18n="navTdr">¿Qué es un TDR?</a>
+        <a href="#siguiente" data-nav data-i18n="navNext">Siguiente</a>
       </nav>
 
-      <div class="controls">
-        <button class="lang">ES</button>
-        <button class="lang">CA</button>
-        <button class="theme">☀︎</button>
-      </div>
+      <div class="actions">
+        <span class="pill" title="Estado">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-i18n="alpha">Versión alpha</span>
+        </span>
 
+        <div class="lang" aria-label="Idioma">
+          <button type="button" id="langES" aria-pressed="true">ES</button>
+          <button type="button" id="langCA" aria-pressed="false">CA</button>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <main id="inicio" class="hero">
-    <div class="hero-content">
+    <div class="hero__bg" aria-hidden="true"></div>
 
-      <p class="hero-kicker">Treball de Recerca (TDR)</p>
+    <!-- (0) Imagen de fondo: placeholder -->
+    <div class="hero__imageHint">
+      (0) Imagen de fondo<br>
+      Aquí pondrás una foto/imagen potente (aula, IA, etc.)
+    </div>
 
-      <h1>
-        Inteligencia Artificial<br>
-        <span>en la Enseñanza</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        Guía práctica y crítica para integrar IA en el aula:
-        beneficios, límites, estudio real y un GPT asistente para docentes.
-      </p>
-
-      <div class="hero-actions">
-        <a href="portal-tdr.html" target="_blank" class="pill primary">
-          Entrar al portal del TDR
-        </a>
-
-        <a href="portal-gpt.html" target="_blank" class="pill">
-          Portal del GPT
-        </a>
+    <div class="container hero__content">
+      <div class="kicker">
+        <span class="kdot" aria-hidden="true"></span>
+        <span data-i18n="kicker">Treball de Recerca (TDR)</span>
       </div>
 
-      <p class="scroll-hint">Desliza para explorar ↓</p>
+      <h1 data-i18n="heroTitle">Inteligencia Artificial<br>en la Enseñanza</h1>
 
+      <p class="subtitle" data-i18n="heroSubtitle">
+        Guía práctica y crítica para integrar IA en el aula: beneficios, límites, estudio real y un GPT asistente para docentes.
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn" href="#home-portales" data-i18n="ctaExplore">Explorar</a>
+        <button class="btn secondary" type="button" id="openPortalTDRTop" data-i18n="ctaPortalTdr">Entrar al portal del TDR</button>
+        <button class="btn secondary" type="button" id="openPortalGPTTop" data-i18n="ctaPortalGpt">Entrar al portal del GPT</button>
+      </div>
+
+      <div class="scrollHint" aria-hidden="true">
+        <span class="chev">↓</span>
+        <span data-i18n="scroll">Desliza para explorar</span>
+      </div>
     </div>
   </main>
 
-  <!-- ================= ¿QUÉ ES UN TDR? ================= -->
-  <section id="tdr" class="section split">
-    <div class="text">
-
-      <h2>¿Qué es un TDR?</h2>
-
-      <p>
-        El Treball de Recerca es un trabajo de investigación propio del
-        bachillerato en el que el alumnado plantea una pregunta real,
-        aplica una metodología y llega a conclusiones propias,
-        acompañadas de un producto final.
+  <!-- PORTALES (HOME) -->
+  <section id="home-portales">
+    <div class="container">
+      <h2 class="sectionTitle" data-i18n="portalsTitle">Panel principal</h2>
+      <p class="sectionLead" data-i18n="portalsLead">
+        Desde aquí puedes entrar al portal del trabajo (TDR) o al portal del GPT. En la versión alpha, algunos elementos estarán como “placeholder”.
       </p>
 
-      <h3>La pregunta que guía este proyecto</h3>
+      <div class="split">
+        <!-- CARD 1: Portal TDR -->
+        <article class="card">
+          <div class="card__media">
+            (1) Imagen sobre el trabajo de investigación<br>
+            (captura del PDF, gráfica, aula, etc.)
+          </div>
+          <div class="card__body">
+            <h3 data-i18n="cardTdrTitle">Trabajo de investigación</h3>
+            <p data-i18n="cardTdrText">
+              Accede al PDF del TDR, enlaces útiles (NotebookLM, Aula de Medios) y un resumen navegable del contenido.
+            </p>
+            <div class="card__actions">
+              <button class="btn small" type="button" id="openPortalTDR" data-i18n="cardTdrBtn1">Entrar al portal del TDR</button>
+              <a class="btn small ghost" href="#que-es-tdr" data-i18n="cardTdrBtn2">Ver la estructura</a>
+            </div>
+            <div class="mutedNote" data-i18n="cardTdrNote">
+              Nota: el portal se abre en una pestaña nueva (sin 404).
+            </div>
+          </div>
+        </article>
 
-      <p class="question">
-        ¿Cómo está cambiando la IA el aprendizaje y el trabajo docente,
-        y cuándo tiene sentido implementarla en el aula sin perder calidad educativa?
-      </p>
-
-      <details class="expand">
-        <summary>Leer en detalle</summary>
-        <p>
-          Este trabajo nace de la observación directa del aula y del
-          impacto real que están teniendo las herramientas de IA en
-          estudiantes y docentes. No se plantea la IA como sustitución,
-          sino como herramienta de apoyo, criterio y acompañamiento.
-        </p>
-      </details>
-
-    </div>
-
-    <div class="image placeholder">
-      Imagen: aula / investigación / GPT
-    </div>
-  </section>
-
-  <!-- ================= MARCO TEÓRICO ================= -->
-  <section id="marco" class="section">
-    <h2>Marco teórico</h2>
-
-    <p class="section-intro">
-      Conceptos clave explicados de forma clara, con ampliaciones
-      desplegables y apoyo visual.
-    </p>
-
-    <!-- 1.1 -->
-    <div class="split alt">
-      <div class="text">
-        <h3>1.1 ¿Qué es la Inteligencia Artificial?</h3>
-        <p>
-          Sistemas capaces de aprender patrones a partir de datos
-          para tomar decisiones o generar contenido.
-        </p>
-
-        <details class="expand">
-          <summary>Más información</summary>
-          <p>
-            Se introducen conceptos como aprendizaje automático,
-            modelos de lenguaje y tipos de IA, siempre contextualizados
-            en el ámbito educativo.
-          </p>
-        </details>
-      </div>
-
-      <div class="image placeholder">
-        Imagen IA
-      </div>
-    </div>
-
-    <!-- 1.2 -->
-    <div class="split">
-      <div class="image placeholder">
-        Imagen ChatGPT
-      </div>
-
-      <div class="text">
-        <h3>1.2 ¿Cómo funciona ChatGPT?</h3>
-        <p>
-          Predice la siguiente palabra a partir del contexto,
-          entrenado con grandes volúmenes de texto.
-        </p>
-
-        <details class="expand">
-          <summary>Más información</summary>
-          <p>
-            Funcionamiento de los modelos de lenguaje,
-            sus límites, alucinaciones y por qué no
-            sustituyen el pensamiento humano.
-          </p>
-        </details>
-      </div>
-    </div>
-
-    <!-- 1.3 -->
-    <div class="split alt">
-      <div class="text">
-        <h3>1.3 ¿Por qué implementar la IA en la enseñanza?</h3>
-        <p>
-          Solo cuando aporta más beneficios que riesgos,
-          reduce carga docente y mejora la atención a la diversidad.
-        </p>
-
-        <details class="expand">
-          <summary>Más información</summary>
-          <p>
-            Metáfora del mechero y la calculadora,
-            competencias clave para el futuro,
-            acompañamiento pedagógico y criterios
-            de uso responsable.
-          </p>
-        </details>
-      </div>
-
-      <div class="image placeholder">
-        Imagen aula / diversidad
+        <!-- CARD 2: Portal GPT -->
+        <article class="card">
+          <div class="card__media">
+            (2) Imagen sobre el GPT<br>
+            (captura del GPT, logo IAE, ejemplo de uso)
+          </div>
+          <div class="card__body">
+            <h3 data-i18n="cardGptTitle">GPT asistente para docentes</h3>
+            <p data-i18n="cardGptText">
+              Qué es un GPT, para qué sirve, a quién va dirigido y ejemplos reales: adaptaciones, planificación, burocracia y rúbricas.
+            </p>
+            <div class="card__actions">
+              <button class="btn small" type="button" id="openPortalGPT" data-i18n="cardGptBtn1">Entrar al portal del GPT</button>
+              <a class="btn small ghost" href="#siguiente" data-i18n="cardGptBtn2">Ver próximos pasos</a>
+            </div>
+            <div class="mutedNote" data-i18n="cardGptNote">
+              Nota: el portal del GPT es alpha (placeholders por ahora).
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ================= MOTIVACIÓN ================= -->
-  <section id="motivacion" class="section split">
-    <div class="text">
-      <h2>Motivación y contexto</h2>
+  <!-- ¿QUÉ ES UN TDR? -->
+  <section id="que-es-tdr">
+    <div class="container">
+      <h2 class="sectionTitle" data-i18n="tdrTitle">¿Qué es un TDR?</h2>
 
-      <p>
-        La motivación de este trabajo surge de la observación
-        de un sistema educativo saturado, con aulas diversas
-        y docentes con cada vez menos tiempo para personalizar
-        el aprendizaje.
-      </p>
+      <div class="split">
+        <div class="panel qBlock">
+          <h4 data-i18n="tdrShortTitle">Definición rápida</h4>
+          <p data-i18n="tdrShortText">
+            Un trabajo de investigación de bachillerato: planteas una pregunta real, recoges evidencia, aplicas una metodología y construyes una conclusión propia con un producto final.
+          </p>
 
-      <p>
-        La IA aparece como una oportunidad, pero también
-        como un riesgo si se utiliza sin criterio pedagógico.
-      </p>
-    </div>
+          <h4 style="margin-top:18px;" data-i18n="tdrQTitle">La pregunta que guía el proyecto</h4>
+          <div class="keyQuestion" data-i18n="tdrQ">
+            ¿Cómo está cambiando la IA el aprendizaje y el trabajo docente, y cuándo tiene sentido implementarla en el aula sin perder calidad educativa?
+          </div>
 
-    <div class="image placeholder">
-      Imagen clase llena / frustración
+          <!-- Desplegable: se abre DEBAJO ocupando TODO el ancho (en este panel).
+               (Tú querías que no se abriera a la derecha, sino debajo del resumen). -->
+          <details>
+            <summary>
+              <span class="summaryLeft">
+                <span class="tri" aria-hidden="true"></span>
+                <span data-i18n="tdrMore">Leer en detalle</span>
+              </span>
+              <span style="color:var(--muted); font-size:12px;" data-i18n="tdrMoreHint">se despliega aquí mismo</span>
+            </summary>
+            <div class="expandBody" data-i18n="tdrLong">
+              Aquí irá la explicación larga (1–2 párrafos) sobre qué es un TDR: objetivos, estructura, metodología (marco teórico + parte práctica), y por qué el producto final puede ser una web/GPT. 
+              <br><br>
+              (Alpha) Cuando me pases el texto definitivo del TDR o el extracto que quieras, lo metemos aquí con el tono que buscas.
+            </div>
+          </details>
+        </div>
+
+        <div class="panel" style="display:flex; align-items:center; justify-content:center; text-align:center;">
+          <div style="color:var(--muted); font-size:12px; max-width: 42ch;">
+            (Imagen) Aquí irá una imagen a la derecha para acompañar esta sección: logo, aula, mapa del índice, foto de encuestas, etc.
+            <br><br>
+            En las siguientes secciones alternaremos: una con imagen a la derecha, otra a la izquierda, etc.
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer">
-    <p>© TDR — IA en la Enseñanza · Versión alpha</p>
+  <!-- SIGUIENTE -->
+  <section id="siguiente" style="background:var(--bg-soft);">
+    <div class="container">
+      <h2 class="sectionTitle" data-i18n="nextTitle">Siguiente paso</h2>
+      <p class="sectionLead" data-i18n="nextLead">
+        Ahora que el Home ya tiene la estructura “limpia”, el siguiente paso es: (1) meter tus imágenes reales, (2) rellenar textos finales, (3) construir el “Portal del TDR” con secciones (Marco teórico, Parte práctica, Estudio, Recursos) y (4) hacer el “Portal del GPT”.
+      </p>
+
+      <div class="split">
+        <div class="panel">
+          <h4 style="margin:0 0 10px;" data-i18n="todoTitle">Checklist rápido</h4>
+          <p style="margin:0; color:var(--muted);" data-i18n="todoText">
+            • Reemplazar (0), (1), (2) por imágenes.<br>
+            • Ajustar título/subtítulo (si quieres).<br>
+            • Definir links reales: PDF, NotebookLM, Aula de Medios.<br>
+            • Pasar a “Portal del TDR” en pestaña nueva (ya funciona).<br>
+            • Luego: idioma completo ES/CA (ya hay base).
+          </p>
+        </div>
+
+        <div class="panel">
+          <h4 style="margin:0 0 10px;" data-i18n="noteTitle">Nota importante</h4>
+          <p style="margin:0; color:var(--muted);" data-i18n="noteText">
+            Si algo aún no existe, no te llevará a un 404: o bien es un ancla (#), o bien el “portal” se genera en una pestaña nueva con placeholders.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <div>
+        <small data-i18n="footerText">
+          Proyecto TDR: “Intel·ligència Artificial a l’Ensenyament”. Web alpha pensada para ser clara, seria y visual (con acento morado).
+        </small>
+      </div>
+      <div class="linkRow">
+        <a class="miniLink" href="#inicio" data-i18n="footerHome">Volver arriba</a>
+        <button class="miniLink" type="button" id="openPortalTDRFoot" data-i18n="footerPortalTdr">Portal del TDR</button>
+        <button class="miniLink" type="button" id="openPortalGPTFoot" data-i18n="footerPortalGpt">Portal del GPT</button>
+      </div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    /* ===========
+       NAV: resaltar activo y evitar 404 (todo es #)
+       =========== */
+    const navLinks = [...document.querySelectorAll("[data-nav]")];
+    const sections = navLinks
+      .map(a => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(a => a.classList.remove("active"));
+        const id = "#" + e.target.id;
+        const active = navLinks.find(a => a.getAttribute("href") === id);
+        if (active) active.classList.add("active");
+      });
+    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+
+    sections.forEach(s => io.observe(s));
+
+    /* ===========
+       IDIOMA (base ES/CA)
+       =========== */
+    const dict = {
+      es: {
+        brand: "IA en la Enseñanza",
+        brandSub: "Web del TDR",
+        alpha: "Versión alpha",
+        kicker: "Treball de Recerca (TDR)",
+        heroTitle: "Inteligencia Artificial\nen la Enseñanza",
+        heroSubtitle: "Guía práctica y crítica para integrar IA en el aula: beneficios, límites, estudio real y un GPT asistente para docentes.",
+        ctaExplore: "Explorar",
+        ctaPortalTdr: "Entrar al portal del TDR",
+        ctaPortalGpt: "Entrar al portal del GPT",
+        scroll: "Desliza para explorar",
+        navPortals: "Portales",
+        navTdr: "¿Qué es un TDR?",
+        navNext: "Siguiente",
+        portalsTitle: "Panel principal",
+        portalsLead: "Desde aquí puedes entrar al portal del trabajo (TDR) o al portal del GPT. En la versión alpha, algunos elementos estarán como “placeholder”.",
+        cardTdrTitle: "Trabajo de investigación",
+        cardTdrText: "Accede al PDF del TDR, enlaces útiles (NotebookLM, Aula de Medios) y un resumen navegable del contenido.",
+        cardTdrBtn1: "Entrar al portal del TDR",
+        cardTdrBtn2: "Ver la estructura",
+        cardTdrNote: "Nota: el portal se abre en una pestaña nueva (sin 404).",
+        cardGptTitle: "GPT asistente para docentes",
+        cardGptText: "Qué es un GPT, para qué sirve, a quién va dirigido y ejemplos reales: adaptaciones, planificación, burocracia y rúbricas.",
+        cardGptBtn1: "Entrar al portal del GPT",
+        cardGptBtn2: "Ver próximos pasos",
+        cardGptNote: "Nota: el portal del GPT es alpha (placeholders por ahora).",
+        tdrTitle: "¿Qué es un TDR?",
+        tdrShortTitle: "Definición rápida",
+        tdrShortText: "Un trabajo de investigación de bachillerato: planteas una pregunta real, recoges evidencia, aplicas una metodología y construyes una conclusión propia con un producto final.",
+        tdrQTitle: "La pregunta que guía el proyecto",
+        tdrQ: "¿Cómo está cambiando la IA el aprendizaje y el trabajo docente, y cuándo tiene sentido implementarla en el aula sin perder calidad educativa?",
+        tdrMore: "Leer en detalle",
+        tdrMoreHint: "se despliega aquí mismo",
+        tdrLong: "Aquí irá la explicación larga (1–2 párrafos) sobre qué es un TDR: objetivos, estructura, metodología (marco teórico + parte práctica), y por qué el producto final puede ser una web/GPT.\n\n(Alpha) Cuando me pases el texto definitivo del TDR o el extracto que quieras, lo metemos aquí con el tono que buscas.",
+        nextTitle: "Siguiente paso",
+        nextLead: "Ahora que el Home ya tiene la estructura “limpia”, el siguiente paso es: (1) meter tus imágenes reales, (2) rellenar textos finales, (3) construir el “Portal del TDR” con secciones (Marco teórico, Parte práctica, Estudio, Recursos) y (4) hacer el “Portal del GPT”.",
+        todoTitle: "Checklist rápido",
+        todoText: "• Reemplazar (0), (1), (2) por imágenes.\n• Ajustar título/subtítulo (si quieres).\n• Definir links reales: PDF, NotebookLM, Aula de Medios.\n• Pasar a “Portal del TDR” en pestaña nueva (ya funciona).\n• Luego: idioma completo ES/CA (ya hay base).",
+        noteTitle: "Nota importante",
+        noteText: "Si algo aún no existe, no te llevará a un 404: o bien es un ancla (#), o bien el “portal” se genera en una pestaña nueva con placeholders.",
+        footerText: "Proyecto TDR: “Intel·ligència Artificial a l’Ensenyament”. Web alpha pensada para ser clara, seria y visual (con acento morado).",
+        footerHome: "Volver arriba",
+        footerPortalTdr: "Portal del TDR",
+        footerPortalGpt: "Portal del GPT"
+      },
+      ca: {
+        brand: "IA a l’Ensenyament",
+        brandSub: "Web del TDR",
+        alpha: "Versió alpha",
+        kicker: "Treball de Recerca (TDR)",
+        heroTitle: "Intel·ligència Artificial\na l’Ensenyament",
+        heroSubtitle: "Guia pràctica i crítica per integrar IA a l’aula: beneficis, límits, estudi real i un GPT assistent per a docents.",
+        ctaExplore: "Explorar",
+        ctaPortalTdr: "Entrar al portal del TDR",
+        ctaPortalGpt: "Entrar al portal del GPT",
+        scroll: "Desplaça per explorar",
+        navPortals: "Portals",
+        navTdr: "Què és un TDR?",
+        navNext: "Següent",
+        portalsTitle: "Panell principal",
+        portalsLead: "Des d’aquí pots entrar al portal del treball (TDR) o al portal del GPT. A la versió alpha, alguns elements seran “placeholder”.",
+        cardTdrTitle: "Treball d’investigació",
+        cardTdrText: "Accedeix al PDF del TDR, enllaços útils (NotebookLM, Aula de Mitjans) i un resum navegable del contingut.",
+        cardTdrBtn1: "Entrar al portal del TDR",
+        cardTdrBtn2: "Veure l’estructura",
+        cardTdrNote: "Nota: el portal s’obre en una pestanya nova (sense 404).",
+        cardGptTitle: "GPT assistent per a docents",
+        cardGptText: "Què és un GPT, per a què serveix, a qui va dirigit i exemples reals: adaptacions, planificació, burocràcia i rúbriques.",
+        cardGptBtn1: "Entrar al portal del GPT",
+        cardGptBtn2: "Veure pròxims passos",
+        cardGptNote: "Nota: el portal del GPT és alpha (placeholders per ara).",
+        tdrTitle: "Què és un TDR?",
+        tdrShortTitle: "Definició ràpida",
+        tdrShortText: "Un treball d’investigació de batxillerat: planteges una pregunta real, reculls evidència, apliques una metodologia i construeixes una conclusió pròpia amb un producte final.",
+        tdrQTitle: "La pregunta que guia el projecte",
+        tdrQ: "Com està canviant la IA l’aprenentatge i el treball docent, i quan té sentit implementar-la a l’aula sense perdre qualitat educativa?",
+        tdrMore: "Llegir en detall",
+        tdrMoreHint: "es desplega aquí mateix",
+        tdrLong: "Aquí anirà l’explicació llarga (1–2 paràgrafs) sobre què és un TDR: objectius, estructura, metodologia (marc teòric + part pràctica), i per què el producte final pot ser una web/GPT.\n\n(Alpha) Quan em passis el text definitiu del TDR o l’extracte que vulguis, ho posem aquí amb el teu to.",
+        nextTitle: "Següent pas",
+        nextLead: "Ara que el Home ja té l’estructura “neta”, el següent pas és: (1) posar imatges reals, (2) omplir textos finals, (3) construir el “Portal del TDR” amb seccions (Marc teòric, Part pràctica, Estudi, Recursos) i (4) fer el “Portal del GPT”.",
+        todoTitle: "Checklist ràpid",
+        todoText: "• Substituir (0), (1), (2) per imatges.\n• Ajustar títol/subtítol (si vols).\n• Definir enllaços reals: PDF, NotebookLM, Aula de Mitjans.\n• Passar a “Portal del TDR” en pestanya nova (ja funciona).\n• Després: idioma complet ES/CA (ja hi ha base).",
+        noteTitle: "Nota important",
+        noteText: "Si alguna cosa encara no existeix, no et portarà a un 404: o bé és un ancoratge (#), o bé el “portal” es genera en una pestanya nova amb placeholders.",
+        footerText: "Projecte TDR: “Intel·ligència Artificial a l’Ensenyament”. Web alpha pensada per ser clara, seriosa i visual (amb accent lila).",
+        footerHome: "Tornar amunt",
+        footerPortalTdr: "Portal del TDR",
+        footerPortalGpt: "Portal del GPT"
+      }
+    };
+
+    function setLang(lang){
+      const d = dict[lang] || dict.es;
+      document.documentElement.lang = lang === "ca" ? "ca" : "es";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (!d[key]) return;
+        el.textContent = d[key];
+      });
+      localStorage.setItem("lang", lang);
+
+      document.getElementById("langES").setAttribute("aria-pressed", lang === "es");
+      document.getElementById("langCA").setAttribute("aria-pressed", lang === "ca");
+    }
+
+    document.getElementById("langES").addEventListener("click", () => setLang("es"));
+    document.getElementById("langCA").addEventListener("click", () => setLang("ca"));
+
+    setLang(localStorage.getItem("lang") || "es");
+
+    /* ===========
+       PORTALES en pestaña nueva (sin crear archivo y sin 404)
+       =========== */
+
+    function openPortal(kind){
+      const w = window.open("", "_blank", "noopener,noreferrer");
+      if (!w) return;
+
+      const title = (kind === "tdr") ? "Portal del TDR" : "Portal del GPT";
+      const accent = "#6D28D9";
+
+      // HTML simple del portal (placeholder), pero con estilo limpio tipo “Google Sites”
+      const portalHTML = `
+<!doctype html>
+<html lang="${document.documentElement.lang}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${title}</title>
+  <meta name="theme-color" content="${accent}" />
+  <style>
+    :root{
+      --bg:#fff; --soft:#F7F7FB; --text:#0B1020; --muted:#5B6275; --border:#E6E7EF;
+      --purple:#6D28D9; --shadow:0 12px 30px rgba(16,24,40,.08); --r:18px; --max:1120px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);line-height:1.5}
+    .container{width:min(var(--max), calc(100% - 40px));margin:0 auto}
+    header{
+      position:sticky;top:0;z-index:10;background:rgba(255,255,255,.86);
+      border-bottom:1px solid rgba(230,231,239,.7);backdrop-filter:blur(10px)
+    }
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:34px;height:34px;border-radius:12px;background:radial-gradient(120% 120% at 20% 10%, #A78BFA 0%, #6D28D9 45%, #111827 120%);box-shadow:0 12px 24px rgba(109,40,217,.25)}
+    .brand strong{font-size:14px}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .nav a{font-size:13px;color:var(--muted);padding:10px 10px;border-radius:12px;text-decoration:none}
+    .nav a:hover{background:rgba(109,40,217,.08);color:var(--text)}
+    .btn{
+      border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:14px;
+      font-size:12px;color:var(--text);cursor:pointer;box-shadow:0 6px 16px rgba(16,24,40,.06)
+    }
+    .btn:hover{background:#F5F3FF;border-color:rgba(109,40,217,.25)}
+    .hero{
+      padding:38px 0 22px;background:linear-gradient(180deg, rgba(109,40,217,.10), transparent 70%);
+      border-bottom:1px solid var(--border)
+    }
+    h1{margin:0 0 8px;font-size:34px;letter-spacing:-.6px}
+    .lead{margin:0;color:var(--muted);max-width:76ch}
+    section{padding:42px 0}
+    .split{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+    @media (max-width:900px){.split{grid-template-columns:1fr}}
+    .panel{
+      background:var(--soft);border:1px solid var(--border);border-radius:var(--r);
+      padding:18px;box-shadow:0 10px 26px rgba(16,24,40,.05)
+    }
+    .img{
+      border:1px dashed rgba(109,40,217,.30);border-radius:var(--r);
+      background:linear-gradient(135deg,#F8FAFF 0%, #EEF2FF 35%, #FFFFFF 100%);
+      height:240px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;text-align:center;padding:12px
+    }
+    .list a{display:block;padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:#fff;margin:10px 0;text-decoration:none;color:var(--text)}
+    .list a:hover{border-color:rgba(109,40,217,.25);background:#F5F3FF}
+    details{border:1px solid var(--border);border-radius:14px;background:#fff;overflow:hidden;margin-top:12px}
+    summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+    summary::-webkit-details-marker{display:none}
+    .body{padding:14px;color:var(--muted);border-top:1px solid var(--border)}
+    footer{padding:26px 0 46px;color:var(--muted);border-top:1px solid var(--border)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container bar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>${title}</strong><br>
+          <span style="color:var(--muted);font-size:12px">Alpha — estructura base</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#contenido">Contenido</a>
+      </nav>
+      <button class="btn" onclick="window.close()">Cerrar pestaña</button>
+    </div>
+  </header>
+
+  <div class="hero" id="inicio">
+    <div class="container">
+      <h1>${title}</h1>
+      <p class="lead">
+        ${kind === "tdr"
+          ? "Aquí irán: PDF del trabajo, NotebookLM, Aula de Medios y un índice navegable (marco teórico, parte práctica, estudio, recursos)."
+          : "Aquí irá: qué es un GPT, a quién va dirigido, ejemplos reales y enlaces al GPT / demo / capturas."}
+      </p>
+    </div>
+  </div>
+
+  <section id="recursos">
+    <div class="container split">
+      <div class="panel">
+        <h2 style="margin:0 0 10px;font-size:18px;letter-spacing:-.2px">Accesos rápidos</h2>
+        <div class="list">
+          <a href="#" onclick="alert('Placeholder: aquí pondrás el link real'); return false;">${kind === "tdr" ? "📄 PDF del TDR (link real)" : "🔗 Link al GPT (link real)"}</a>
+          <a href="#" onclick="alert('Placeholder: aquí pondrás el link real'); return false;">${kind === "tdr" ? "🧠 NotebookLM (link real)" : "🧪 Ejemplos de uso (links)"}</a>
+          <a href="#" onclick="alert('Placeholder: aquí pondrás el link real'); return false;">${kind === "tdr" ? "🎥 Aula de Medios (link real)" : "🖼️ Capturas / evidencias"}</a>
+        </div>
+      </div>
+      <div class="img">
+        Espacio para imagen principal del portal<br>
+        (metodología / encuestas / diseño del GPT)
+      </div>
+    </div>
+  </section>
+
+  <section id="contenido">
+    <div class="container split">
+      <div class="panel">
+        <h2 style="margin:0 0 10px;font-size:18px;letter-spacing:-.2px">Secciones</h2>
+        <details>
+          <summary>Marco teórico <span style="color:var(--muted);font-size:12px">+</span></summary>
+          <div class="body">Placeholder: aquí irá el índice + resúmenes + “más info” desplegable.</div>
+        </details>
+        <details>
+          <summary>Parte práctica <span style="color:var(--muted);font-size:12px">+</span></summary>
+          <div class="body">Placeholder: pruebas, experiencias, creación del GPT, etc.</div>
+        </details>
+        <details>
+          <summary>Estudio y correlaciones <span style="color:var(--muted);font-size:12px">+</span></summary>
+          <div class="body">Placeholder: acceso a excels y explicación de correlaciones.</div>
+        </details>
+        <details>
+          <summary>Recursos <span style="color:var(--muted);font-size:12px">+</span></summary>
+          <div class="body">Placeholder: enlaces, bibliografía, herramientas, etc.</div>
+        </details>
+      </div>
+      <div class="img">
+        Espacio para imagen secundaria<br>
+        (gráfica, captura, foto de clase)
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <small>Este portal es temporal (alpha). Cuando quieras, lo convertimos en una página real con su propio archivo.</small>
+    </div>
+  </footer>
+</body>
+</html>`;
+
+      w.document.open();
+      w.document.write(portalHTML);
+      w.document.close();
+    }
+
+    // Botones portal
+    const openTdrButtons = ["openPortalTDR", "openPortalTDRTop", "openPortalTDRFoot"];
+    openTdrButtons.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", () => openPortal("tdr"));
+    });
+
+    const openGptButtons = ["openPortalGPT", "openPortalGPTTop", "openPortalGPTFoot"];
+    openGptButtons.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", () => openPortal("gpt"));
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", href);
+      });
+    });
+  </script>
 </body>
 </html>
