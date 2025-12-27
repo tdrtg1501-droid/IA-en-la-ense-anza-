@@ -1,65 +1,184 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portal del TDR — IA en la Enseñanza</title>
+  <meta name="theme-color" content="#6D28D9" />
 
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root{
+      --bg:#fff; --soft:#F7F7FB; --text:#0B1020; --muted:#5B6275; --border:#E6E7EF;
+      --purple:#6D28D9; --shadow:0 12px 30px rgba(16,24,40,.08); --r:18px; --max:1120px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 40px));margin:0 auto}
+
+    header{
+      position:sticky;top:0;z-index:10;background:rgba(255,255,255,.86);
+      border-bottom:1px solid rgba(230,231,239,.7);backdrop-filter:blur(10px)
+    }
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:34px;height:34px;border-radius:12px;background:radial-gradient(120% 120% at 20% 10%, #A78BFA 0%, #6D28D9 45%, #111827 120%);box-shadow:0 12px 24px rgba(109,40,217,.25)}
+    .brand strong{font-size:14px}
+    .brand span{color:var(--muted);font-size:12px}
+
+    .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .nav a{font-size:13px;color:var(--muted);padding:10px 10px;border-radius:12px}
+    .nav a:hover{background:rgba(109,40,217,.08);color:var(--text)}
+
+    .btn{
+      border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:14px;
+      font-size:12px;color:var(--text);cursor:pointer;box-shadow:0 6px 16px rgba(16,24,40,.06)
+    }
+    .btn:hover{background:#F5F3FF;border-color:rgba(109,40,217,.25)}
+
+    .hero{
+      padding:38px 0 22px;background:linear-gradient(180deg, rgba(109,40,217,.10), transparent 70%);
+      border-bottom:1px solid var(--border)
+    }
+    h1{margin:0 0 8px;font-size:34px;letter-spacing:-.6px}
+    .lead{margin:0;color:var(--muted);max-width:78ch}
+
+    section{padding:42px 0}
+    .split{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+    @media (max-width:900px){.split{grid-template-columns:1fr}}
+
+    .panel{
+      background:var(--soft);border:1px solid var(--border);border-radius:var(--r);
+      padding:18px;box-shadow:0 10px 26px rgba(16,24,40,.05)
+    }
+    .img{
+      border:1px dashed rgba(109,40,217,.30);border-radius:var(--r);
+      background:linear-gradient(135deg,#F8FAFF 0%, #EEF2FF 35%, #FFFFFF 100%);
+      height:240px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;text-align:center;padding:12px
+    }
+
+    .list a{
+      display:block;padding:10px 12px;border-radius:14px;border:1px solid var(--border);
+      background:#fff;margin:10px 0
+    }
+    .list a:hover{border-color:rgba(109,40,217,.25);background:#F5F3FF}
+
+    details{border:1px solid var(--border);border-radius:14px;background:#fff;overflow:hidden;margin-top:12px}
+    summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+    summary::-webkit-details-marker{display:none}
+    .body{padding:14px;color:var(--muted);border-top:1px solid var(--border)}
+
+    footer{padding:26px 0 46px;color:var(--muted);border-top:1px solid var(--border)}
+  </style>
 </head>
 
-<body class="portal">
+<body>
+  <header>
+    <div class="container bar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>Portal del TDR</strong><br>
+          <span>IA en la Enseñanza · estructura alpha</span>
+        </div>
+      </div>
 
-  <header class="portal-header">
-    <h1>Portal del TDR</h1>
-    <p>Trabajo de Investigación · Inteligencia Artificial en la Enseñanza</p>
+      <nav class="nav" aria-label="Menú portal">
+        <a href="#accesos">Accesos</a>
+        <a href="#indice">Índice</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#estudio">Estudio</a>
+      </nav>
+
+      <a class="btn" href="./" title="Volver al Home">Volver al Home</a>
+    </div>
   </header>
 
-  <div class="portal-layout">
-
-    <!-- MENÚ -->
-    <nav class="portal-nav">
-      <a href="#marco">Marco teórico</a>
-      <a href="#metodologia">Metodología</a>
-      <a href="#practica">Parte práctica</a>
-      <a href="#estudio">Estudio y correlaciones</a>
-      <a href="#conclusiones">Conclusiones</a>
-    </nav>
-
-    <!-- CONTENIDO -->
-    <main class="portal-content">
-
-      <section id="marco">
-        <h2>Marco teórico</h2>
-        <p>Definiciones, tipos de IA, funcionamiento y contexto educativo.</p>
-        <div class="img-placeholder">Imagen / esquema IA</div>
-      </section>
-
-      <section id="metodologia">
-        <h2>Metodología</h2>
-        <p>Encuestas, entrevistas, observación en aula y uso de IA.</p>
-        <div class="img-placeholder">Foto encuestas / formularios</div>
-      </section>
-
-      <section id="practica">
-        <h2>Parte práctica</h2>
-        <p>Diseño del GPT, pruebas reales y adaptaciones.</p>
-        <div class="img-placeholder">Capturas del GPT</div>
-      </section>
-
-      <section id="estudio">
-        <h2>Estudio y correlaciones</h2>
-        <p>Análisis de datos, gráficos y relaciones detectadas.</p>
-        <div class="img-placeholder">Gráficos / Excel</div>
-      </section>
-
-      <section id="conclusiones">
-        <h2>Conclusiones</h2>
-        <p>Reflexión final, límites y propuestas de futuro.</p>
-      </section>
-
-    </main>
+  <div class="hero">
+    <div class="container">
+      <h1>Portal del TDR</h1>
+      <p class="lead">
+        Aquí irá el acceso al PDF, enlaces (NotebookLM, Aula de Medios) y un índice navegable del trabajo:
+        marco teórico → parte práctica → estudio/correlaciones → recursos.
+      </p>
+    </div>
   </div>
 
+  <section id="accesos">
+    <div class="container split">
+      <div class="panel">
+        <h2 style="margin:0 0 10px;font-size:18px;letter-spacing:-.2px">Accesos rápidos</h2>
+        <div class="list">
+          <a href="#" onclick="alert('Aquí pondrás el link real del PDF'); return false;">📄 PDF del TDR (link real)</a>
+          <a href="#" onclick="alert('Aquí pondrás el link real de NotebookLM'); return false;">🧠 NotebookLM (link real)</a>
+          <a href="#" onclick="alert('Aquí pondrás el link real del Aula de Medios'); return false;">🎥 Aula de Medios (link real)</a>
+        </div>
+      </div>
+
+      <div class="img">
+        Imagen principal del portal<br>
+        (encuestas / metodología / diseño del GPT)
+      </div>
+    </div>
+  </section>
+
+  <section id="indice">
+    <div class="container split">
+      <div class="panel">
+        <h2 style="margin:0 0 10px;font-size:18px;letter-spacing:-.2px">Índice del trabajo</h2>
+
+        <details>
+          <summary>Marco teórico <span style="color:var(--muted);font-size:12px">+</span></summary>
+          <div class="body">Placeholder: apartados 1.1, 1.2, 1.3… con resumen y “más info”.</div>
+        </details>
+
+        <details>
+          <summary>Parte práctica <span style="color:var(--muted);font-size:12px">+</span></summary>
+          <div class="body">Placeholder: pruebas con el GPT, documentos burocráticos, adaptaciones, etc.</div>
+        </details>
+
+        <details>
+          <summary>Recursos <span style="color:var(--muted);font-size:12px">+</span></summary>
+          <div class="body">Placeholder: enlaces, bibliografía, herramientas usadas.</div>
+        </details>
+      </div>
+
+      <div class="img">
+        Imagen secundaria<br>
+        (gráfica, captura, foto de clase)
+      </div>
+    </div>
+  </section>
+
+  <section id="metodologia">
+    <div class="container split">
+      <div class="img">Foto encuestas / formularios / observación</div>
+      <div class="panel">
+        <h2 style="margin:0 0 10px;font-size:18px;letter-spacing:-.2px">Metodología</h2>
+        <p style="margin:0;color:var(--muted)">
+          Encuestas a docentes y alumnado, entrevistas, observación directa de aula y análisis de herramientas.
+          Aquí pondremos también capturas del diseño del GPT.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="estudio">
+    <div class="container split">
+      <div class="panel">
+        <h2 style="margin:0 0 10px;font-size:18px;letter-spacing:-.2px">Estudio y correlaciones</h2>
+        <p style="margin:0;color:var(--muted)">
+          Aquí irán los enlaces a Excel/Sheets y una explicación de las correlaciones encontradas (con imágenes de los gráficos).
+        </p>
+      </div>
+      <div class="img">Gráficos / correlaciones / heatmaps</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <small>Portal alpha. Cuando me pases los links reales y las imágenes, lo dejamos “final”.</small>
+    </div>
+  </footer>
 </body>
 </html>
